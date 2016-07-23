@@ -160,18 +160,18 @@ ax1 = fig.add_subplot(111)
 
 ax1.scatter(sf_outback_prices, sf_outback_miles, s=sf_outback_years, marker="o", facecolors='none', edgecolors='b', label='SF Outback')
 ax1.scatter(sf_forester_prices, sf_forester_miles, s=sf_forester_years, c='b', marker="x", label='SF Forester')
-ax1.scatter(sf_impreza_prices, sf_impreza_miles, s=sf_impreza_years, c='b', marker="+", label='SF Impreza')
+#ax1.scatter(sf_impreza_prices, sf_impreza_miles, s=sf_impreza_years, c='b', marker="+", label='SF Impreza')
 ax1.scatter(bos_outback_prices, bos_outback_miles, s=bos_outback_years, marker="o",facecolors='none', edgecolors='g', label='US Outback')
 ax1.scatter(bos_forester_prices, bos_forester_miles, s=bos_forester_years, c='g', marker="x", label='US Forester')
-ax1.scatter(bos_impreza_prices, bos_impreza_miles, s=bos_impreza_years, c='g', marker="+", label='US Impreza')
+#ax1.scatter(bos_impreza_prices, bos_impreza_miles, s=bos_impreza_years, c='g', marker="+", label='US Impreza')
 ax1.scatter(new_sf_outback_prices, new_sf_outback_miles, s=new_sf_outback_years, marker="o", facecolors='none', edgecolors='r', label='NEW SF Outback')
 ax1.scatter(new_sf_forester_prices, new_sf_forester_miles, s=new_sf_forester_years, c='r', marker="x", label='NEW SF Forester')
-ax1.scatter(new_sf_impreza_prices, new_sf_impreza_miles, s=new_sf_impreza_years, c='r', marker="+", label='NEW SF Impreza')
+#ax1.scatter(new_sf_impreza_prices, new_sf_impreza_miles, s=new_sf_impreza_years, c='r', marker="+", label='NEW SF Impreza')
 # ax1.legend(loc='upper right')
 
 
-ax1.set_xticks(numpy.arange(5,18,1))
-ax1.set_yticks(numpy.arange(0,100,10))
+ax1.set_xticks(numpy.arange(2,20,1))
+ax1.set_yticks(numpy.arange(0,160,10))
 
 
 plt.xlabel('Price (k-$)')

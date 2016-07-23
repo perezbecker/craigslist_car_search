@@ -7,15 +7,21 @@ from bs4 import BeautifulSoup as bs4
 from time import sleep
 
 min_price = 3000
-max_price = 16000
+max_price = 20000
 min_miles = 5000
-max_miles = 80000
-min_auto_year = 2008
+max_miles = 150000
+min_auto_year = 2005
+max_auto_year = 2016
+carmaker ="subaru"
+models = ['outback','forester','impreza']
+outputfile = "subarus.csv"
+
 #locations = ['sfbay','seattle','sandiego','lasvegas','portland','losangeles','chicago','newyork','cleveland','austin','detroit','denver','houston','dallas','sanantonio','miami','orlando','philadelphia','phoenix','indianapolis','atlanta','buffalo','cincinati','delaware','elpaso','fresno','iowa','ithaca','laredo','madison','memphis','merced','modesto','moterey','santacruz','montgomery','nashville','nh','neworleans','oaklahomacity','orangecounty','palmsprings','pittsburgh','pueblo','redding','reno','salem','saltlakecity','sandiego','slo','santabarbara','santamaria']
 #locations = ['orangecounty','palmsprings','pittsburgh','pueblo','redding','reno','salem','saltlakecity','sandiego','slo','santabarbara','santamaria']
 locations = ['sfbay']
 
-models = ['outback','forester','impreza']
+#models = ['forester']
+
 
 
 def find_prices(results):
@@ -64,7 +70,7 @@ def get_real_link(links,loc):
 
 recorded_cars=[]
 
-with open('subarus.csv') as f:
+with open(outputfile) as f:
     lines = f.readlines()
     for line in lines:
         temp_recorded_car=re.findall("db:(\d+):db",line)
@@ -75,7 +81,7 @@ f.close()
 # loc_prefixes = ['eby'] # NOT USED
 
 
-file_ = open('subarus.csv', 'a')
+file_ = open(outputfile, 'a')
 
 results = []  
 # Careful with this...too many queries == your IP gets banned temporarily
@@ -85,7 +91,7 @@ for loc in locations:
         for i in search_indices:
             #url = 'http://sfbay.craigslist.org/search/{0}/cto'.format(loc)
             url = 'http://'+loc+'.craigslist.org/search/cto'
-            resp = requests.get(url, params={'hasPic':1, 'auto_make_model':'subaru'+'+'+model,'min_price':min_price,'max_price':max_price,'min_auto_year':min_auto_year,'auto_title_status':1,'min_auto_miles':min_miles,'max_auto_miles':max_miles, 's': i})
+            resp = requests.get(url, params={'hasPic':1, 'auto_make_model':carmaker+'+'+model,'min_price':min_price,'max_price':max_price,'min_auto_year':min_auto_year,'max_auto_year':max_auto_year,'auto_title_status':1,'min_auto_miles':min_miles,'max_auto_miles':max_miles, 's': i})
             txt = bs4(resp.text, 'html.parser')
             cars = txt.findAll(attrs={'class': "row"})
             print model, ", found:", len(cars)
